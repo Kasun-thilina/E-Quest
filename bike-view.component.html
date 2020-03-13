@@ -1,0 +1,106 @@
+<div style="margin-top: 1%">
+  <div class="container">
+    <br>
+    <h1 class="mt-1"> View All Bike List</h1>
+    <br>
+    <div class="row" >
+      <div class="col-md-4 col-sm-12 col-lg-4">
+        <input id="names_search_item" maxlength="100" type="text"
+               class="form-control col-sm col-md col-lg shadow-sm"
+               placeholder="Filter By Bike Name" style="font-size: 15px" [(ngModel)]="bikeName">
+      </div>
+      <div class="col-md-4 col-sm-12 col-lg-4">
+        <input id="" maxlength="100" type="text"
+               class="form-control col-sm col-md col-lg shadow-sm"
+               placeholder="Filter By Price" style="font-size: 15px" [(ngModel)]="price">
+      </div>
+      <div class="col-md-4 col-sm-12 col-lg-4">
+        <input id="b" maxlength="100" type="text"
+               class="form-control col-sm col-md col-lg shadow-sm"
+               placeholder="Filter By Bike Status" style="font-size: 15px" [(ngModel)]="status">
+      </div>
+    </div>
+    <br>
+    <div class="row" id="ads" >
+      <!-- Category Card -->
+      <div class="col-md-4  mt-5 mb-2" *ngFor="let data of bike | bikeFilter:bikeName | priceFilter:price | bikeStatusFilter:status" >
+        <div class="card rounded">
+          <div class="card-image">
+            <span class="card-notify-badge">{{data.bikeStatus}}</span>
+            <div class="card-image"*ngIf="data.bikeType == 'ScooterBike'" >
+              <img class="img-fluid" src="../../../../assets/img/gallery-11-01-2016-133912_1329035837-500x500.jpg" alt="Alternate Text"
+                   style="width: 420px;height: 200px"/>
+            </div>
+            <div class="card-image"*ngIf="data.bikeType == 'HeavyBike'" >
+              <img class="img-fluid" src="../../../../assets/img/honda.jpg" alt="Alternate Text"
+                   style="width: 420px;height: 200px"/>
+            </div>
+            <div class="card-image"*ngIf="data.bikeType == 'MountainBike'" >
+              <img class="img-fluid" src="../../../../assets/img/78b3521c-d1a5-46e1-b0fa-0a37ab579cf6_1.098074d2e285aab477c16b3e1396cf8d.jpeg" alt="Alternate Text"
+                   style="width: 420px;height: 200px"/>
+            </div>
+          </div>
+          <div class="card-image-overlay m-auto">
+            <span class="card-detail-badge" style="margin-right: 1px">{{data.bikeNumber}}</span>
+            <span class="card-detail-badge" style="margin-right: 1px"> LKR {{data.bikePrice}}</span>
+            <span class="card-detail-badge">{{data.bikeType}}</span>
+          </div>
+          <div class="card-body text-center">
+            <div class="ad-title m-auto">
+              <h5>{{data.bikeName}}</h5>
+            </div>
+            <div class="card-image-overlay m-auto">
+              <a class="card-detail-badge editButton" style="margin-right: 1px" data-toggle="modal" (click)="updateBikePopUp(data.bikeId)" data-target="#updateBike" >Edit Bike</a>
+              <a class="card-detail-badge btn-danger" style="margin-right: 1px" (click)="deleteBike(data.bikeId)">Remove Bike</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div  class="modal fade " id="updateBike" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="updateBikePriceForm" novalidate>
+          <div class="card">
+            <div class="card-body">
+              <!--Title-->
+              <div class="input-group mt-2">
+              </div>
+              <!--Name-->
+              <div class="form-group">
+                <div class="divider">
+                  <span></span>
+                  <span></span>
+                </div>
+                <div class="form-group">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <label for="bikePrice" style="float: left;font-size: 12px">Bike Price</label>
+                      <input class="form-control" type="text" id="bikePrice" placeholder="Enter Bike Price" name="bikePrice" formControlName="bikePrice" #bikePrice required >
+                      <div *ngIf="updateBikePriceForm.controls['bikePrice'].invalid && (updateBikePriceForm.controls['bikePrice'].dirty || updateBikePriceForm.controls['bikePrice'].touched)" class="alert  mt-1" style="height: 10px;color: red">
+                        <div *ngIf="updateBikePriceForm.controls['bikePrice'].errors.required" style="font-size: 10px">
+                          Bike Price is required.
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+                <button onclick="" type="button" class="btn btn-outline-success btn-signIn" (click)="updateBikePrice(bikePrice.value)" [disabled]="updateBikePriceForm.pristine || updateBikePriceForm.invalid">Update</button>
+                <button onclick="" type="button" class="btn btn-outline-danger btn-signIn">Cancel</button>
+              </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
