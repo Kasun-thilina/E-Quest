@@ -1,0 +1,116 @@
+<!--Registration Form-->
+<form  style="margin-top: 5%" [formGroup]="addBikeForm" novalidate>
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-9">
+        <div class="card">
+          <div class="card-body">
+            <!--Title-->
+            <div class="input-group mt-2 mb-4 justify-content-center mb-4">
+              <h1>Bike Registration</h1>
+            </div>
+            <!--Name-->
+            <div class="form-group pt-2">
+              <div class="divider">
+                <span></span>
+                <span></span>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <label for="bikeName" style="float: left;font-size: 12px">Bike Name</label>
+                  <input class="form-control" type="text" id="bikeName" placeholder="Enter Bike Name" name="bikeName" formControlName="bikeName" #bikeName required >
+                  <div *ngIf="addBikeForm.controls['bikeName'].invalid && (addBikeForm.controls['bikeName'].dirty || addBikeForm.controls['bikeName'].touched)" class="alert  mt-1" style="height: 10px;color: red">
+                    <div *ngIf="addBikeForm.controls['bikeName'].errors.required" style="font-size: 10px">
+                      Bike Name is required.
+                    </div>
+                  </div>
+
+                </div>
+                <div class="col-md-6">
+                  <label for="bikeType" style="float: left;font-size: 12px">Bike Type</label>
+                  <select class="form-control" id="bikeType" name="bikeType"  formControlName="bikeType" #bikeType>
+                    <option value="MountainBike">Mountain Bike</option>
+                    <option value="ScooterBike">Scooter Bike</option>
+                    <option value="HeavyBike">Heavy Bike</option>
+                  </select>
+                  <div *ngIf="addBikeForm.controls['bikeType'].invalid && (addBikeForm.controls['bikeType'].dirty || addBikeForm.controls['bikeType'].touched)" class="alert  mt-1" style="height: 10px;color: red">
+                    <div *ngIf="addBikeForm.controls['bikeType'].errors.required" style="font-size: 10px">
+                      Bike Type is required.
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+              </div>
+              <!--FullName Validate Alert-->
+              <label id="alertFullNameError" style="color: red" class="justify-content-center">
+                <span id="alertFullNameContent" class="text-center"></span>
+              </label>
+              <!--Personal Details-->
+              <div class="divider pt-3">
+                <span></span>
+                <span></span>
+              </div>
+              <div class="form-group">
+                <label for="bikeNumber">Bike Number</label>
+                <input class="form-control" id="bikeNumber" type="text" placeholder="Bike Number" name="bikeNumber" formControlName="bikeNumber" #bikeNumber>
+                <div *ngIf="addBikeForm.controls['bikeNumber'].invalid && (addBikeForm.controls['bikeNumber'].dirty || addBikeForm.controls['bikeNumber'].touched)" class="alert  mt-1" style="height: 10px;color: red">
+                  <div *ngIf="addBikeForm.controls['bikeNumber'].errors.required" style="font-size: 10px">
+                    Bike Number is required.
+                  </div>
+                </div>
+              </div>
+              <!--NIC Number Validate Alert-->
+              <label id="alertNicNoError" style="color: red" class="justify-content-center">
+                <span id="alertNicNoContent" class="text-center"></span>
+              </label>
+              <div class="form-group">
+                <label for="bikeBrandName">Bike Brand Name</label>
+                <input class="form-control" id="bikeBrandName" type="text" placeholder="Brand Name"
+                       name="bikeBrandName" formControlName="bikeBrandName" #bikeBrandName>
+                <div *ngIf="addBikeForm.controls['bikeBrandName'].invalid && (addBikeForm.controls['bikeBrandName'].dirty || addBikeForm.controls['bikeBrandName'].touched)" class="alert  mt-1" style="height: 10px;color: red">
+                  <div *ngIf="addBikeForm.controls['bikeBrandName'].errors.required" style="font-size: 10px">
+                    Bike Brand Name is required.
+                  </div>
+                </div>
+              </div>
+              <!--Telephone Number Validate Alert-->
+              <label id="alertTelephoneNoError" style="color: red" class="justify-content-center">
+                <span id="alertTelephoneNoContent" class="text-center"></span>
+              </label>
+              <div class="form-group">
+                <label for="bikePrice">Bike Number</label>
+                <input class="form-control" id="bikePrice" type="number" placeholder="Bike Price "
+                       name="bikePrice" formControlName="bikePrice" #bikePrice>
+                <div *ngIf="addBikeForm.controls['bikePrice'].invalid && (addBikeForm.controls['bikePrice'].dirty || addBikeForm.controls['bikePrice'].touched)" class="alert  mt-1" style="height: 10px;color: red">
+                  <div *ngIf="addBikeForm.controls['bikePrice'].errors.required" style="font-size: 10px">
+                    Bike Price is required.
+                  </div>
+                </div>
+              </div>
+              <!--Mobile Number Validate Alert-->
+              <label id="alertMobileNoError" style="color: red" class="justify-content-center">
+                <span id="alertMobileNoContent" class="text-center"></span>
+              </label>
+              <!--Register Button-->
+            <div class="row">
+              <div class="col-md-6">
+                <button class="btn btn-block btn-lg btn-pill btn-primary" (click)="registerBike(bikeNumber.value,bikeName.value,bikeType.value,bikeBrandName.value,bikePrice.value)"
+                        type="button" id="btnCustomerRegister" [disabled]="addBikeForm.pristine || addBikeForm.invalid">
+                  Register Bike
+                </button>
+              </div>
+              <div class="col-md-6">
+                <button class="btn btn-block btn-lg btn-pill btn-danger" type="button" id="">
+                  Cancel
+                </button>
+              </div>
+
+            </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+</form>
