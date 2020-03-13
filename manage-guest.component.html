@@ -1,0 +1,131 @@
+<h2 class="mt-5 mb-5 ml-5">List Of Guests</h2>
+<!--guest details-->
+<div class="row ml-5 mr-5" >
+  <div class="col-md-6 col-sm-12 col-lg-6">
+    <input id="names_search_item" maxlength="100" type="text"
+           class="form-control col-sm col-md col-lg shadow-sm"
+           placeholder="Filter By User Name" style="font-size: 15px" [(ngModel)]="userName">
+  </div>
+  <div class="col-md-6 col-sm-12 col-lg-6">
+    <input id="" maxlength="100" type="text"
+           class="form-control col-sm col-md col-lg shadow-sm"
+           placeholder="Filter By Country" style="font-size: 15px" [(ngModel)]="country">
+  </div>
+</div>
+<table class="table table-hover mt-4">
+  <thead>
+  <tr>
+    <td>Guest Name</td>
+    <td>User Name</td>
+    <td>Country</td>
+    <td>Passport Number</td>
+    <td>Mobile Number</td>
+    <td>Email</td>
+    <td>NIC Number</td>
+    <td >Actions</td>
+    <td>Actions</td>
+  </tr>
+  </thead>
+
+  <tbody *ngFor="let data of guest | guestUserNameFilter:userName | countryFilter:country ">
+  <tr *ngIf="data.guestName != 'Admin'">
+    <td>{{data.guestName}}</td>
+    <td>{{data.userName}}</td>
+    <td>{{data.country}}</td>
+    <td>{{data.passportNumber}}</td>
+    <td>{{data.mobileNumber}}</td>
+    <td>{{data.email}}</td>
+    <td>{{data.nic}}</td>
+    <td><button class="btn btn-info  btn-sm"  (click)="removeGuest(data.guestId)">Remove</button></td>
+    <td><button class="btn btn-info  btn-sm" data-toggle="modal" data-target="#reservation" (click)="searchResrvationByGuestId(data.guestId)">Reservation</button></td>
+  </tr>
+  </tbody>
+</table>
+
+<!--<div class="container mt-5">-->
+<!--  <div class="row mb-1" >-->
+<!--    <div class="col-md-4" *ngFor="let data of guest | guestUserNameFilter:userName | countryFilter:country">-->
+<!--      <div class="card card-inverse card-info " style="width:300px;height:377px;margin-left: 0" >-->
+<!--        <div class="card-block mt-12" >-->
+<!--          <h2 class="card-title mt-3 ml-5">{{data.guestName}}</h2>-->
+<!--          <div class="meta card-text">-->
+<!--            <a class="ml-5">{{data.userName}}</a>-->
+<!--          </div>-->
+<!--          <div class="card-text ml-5 mt-4">-->
+<!--            <p>Mobile Number : {{data.mobileNumber}}</p>-->
+<!--            <p>Email : {{data.email}}</p>-->
+<!--            <p>Country : {{data.country}}</p>-->
+<!--            <p>Passport No : {{data.passportNumber}}</p>-->
+<!--            <p>Nic No : {{data.nic}}</p>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--        <div class="card-footer">-->
+<!--          <small>Action</small>-->
+<!--          <button class="btn btn-info float-right btn-sm" style="margin-left: 1%" (click)="removeGuest(data.guestId)">Remove</button>-->
+<!--          <button class="btn btn-info float-right btn-sm" data-toggle="modal" data-target="#reservation" (click)="searchResrvationByGuestId(data.guestId)">Reservation</button>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--    </div>-->
+<!--</div>-->
+<!--guest details-->
+
+<!--view guest reservation-->
+<div  class="modal fade " id="reservation" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" *ngFor="let i of searchRentDetailsByGuestId">
+        <h2 class="ml-3" style="color: red">Reservation ID : {{i.rentId}}</h2>
+        <div class="container" >
+          <table class="pull-left col-md-8 ">
+            <tbody>
+            <tr>
+              <td class="h6"><strong>Bike Name</strong></td>
+              <td> </td>
+              <td >{{i.bikeName}}</td>
+            </tr>
+
+            <tr>
+              <td class="h6"><strong>Bike Number</strong></td>
+              <td> </td>
+              <td >{{i.bikeNumber}}</td>
+            </tr>
+
+            <tr>
+              <td class="h6"><strong>Rent Date</strong></td>
+              <td> </td>
+              <td >{{i.handOverDate}}</td>
+            </tr>
+
+            <tr>
+              <td class="h6"><strong>Location</strong></td>
+              <td> </td>
+              <td >{{i.location}}</td>
+            </tr>
+
+            <tr>
+              <td class="h6"><strong>Status</strong></td>
+              <td> </td>
+              <td>{{i.status}}</td>
+            </tr>
+
+            <tr>
+              <td class="h6"><strong>Ammount</strong></td>
+              <td> </td>
+              <td >{{i.totalAmount}}</td>
+            </tr>
+            <hr>
+            </tbody>
+          </table>
+          </div>
+        </div>
+      </div>
+  </div>
+</div>
+<!--view guest reservation-->
+
