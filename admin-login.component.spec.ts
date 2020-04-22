@@ -2,6 +2,8 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AdminLoginComponent } from './admin-login.component';
 
+//for admin login component
+
 describe('AdminLoginComponent', () => {
   let component: AdminLoginComponent;
   let fixture: ComponentFixture<AdminLoginComponent>;
