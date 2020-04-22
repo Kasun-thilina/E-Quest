@@ -15,7 +15,7 @@ export class AdminLoginComponent implements OnInit {
 
   guest : Guest;
 
-  constructor(private guestService:GuestService,private formBuilder : FormBuilder,private router: Router) { }
+  constructor(private guestService:GuestService,private formBuilder : FormBuilder,private router: Router){ }
 
   ngOnInit() {
     window.localStorage.removeItem('token');
