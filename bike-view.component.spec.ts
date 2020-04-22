@@ -2,6 +2,8 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { BikeViewComponent } from './bike-view.component';
 
+// about bike view componenet
+
 describe('BikeViewComponent', () => {
   let component: BikeViewComponent;
   let fixture: ComponentFixture<BikeViewComponent>;
