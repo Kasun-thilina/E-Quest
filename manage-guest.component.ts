@@ -35,6 +35,7 @@ export class ManageGuestComponent implements OnInit {
     });
   }
 
+//   remove guest
   removeGuest(guestId: number) {
     this.guestService.removeGuest(guestId).subscribe(res => {
       Swal.fire({
