@@ -61,7 +61,7 @@ export class ViewReservationsComponent implements OnInit {
       });
       this.ngOnInit();
   }
-
+// call reservation
   createReservationUpdate(){
     this.updateReservationForm = this.formBuilder.group({
       status:['',Validators.required],
