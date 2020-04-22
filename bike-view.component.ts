@@ -19,6 +19,8 @@ export class BikeViewComponent implements OnInit {
   }
 
   bikeName: string;
+  
+//   for bikes
 
   bike: Bike[];
 
